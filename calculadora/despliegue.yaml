@@ -1,0 +1,20 @@
+apiVersion: apps/v1 # Version de Kubernetes
+kind: Deployment # Tipo de objeto de Kubernetes
+metadata:
+  name: calculadora-app # Nombre del Deployment
+spec:
+  replicas: 3 # Numero de replicas de pods a utilizar
+  selector:
+    matchLabels:
+      app: calculadora-app # Indicamos nombre de los pods a los que se aplicará este Deployment
+  template: # Definimos plantilla para la creación de los pods
+    metadata:
+      labels:
+        app: calculadora-app # Establecemos etiqueta para los pods creados
+    spec:
+      containers: # Especificamos las caracteristicas del contenedor en el que se ejecutarán los pods
+      - name: calculadora-app # Indicamos el nombre del contenedor
+        image: calculadora-calculator-app:latest # Especifica la imagen del contenedor que se utilizará para crear las instancias de los pods
+        ports:
+        - containerPort: 8080 # Indicamos que el contenedor escucha en el puerto 8080.
+
